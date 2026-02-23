@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sdgp_app/screen/ParentNotification.dart';
 
 class ParentHomeScreen extends StatelessWidget {
   const ParentHomeScreen({super.key});
@@ -98,10 +97,9 @@ class ParentHomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.notifications_none, color: Colors.black54),
             onPressed: () {
-              // Wenama hadapu NotificationSettingsPage ekata move wenawa
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const NotificationSettingsPage()),
+              // Notification page not yet implemented
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Notifications')),
               );
             },
           ),
@@ -191,7 +189,7 @@ class ParentHomeScreen extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
         border: Border.all(color: Colors.grey.shade100),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 10)],
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.02), blurRadius: 10)],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
