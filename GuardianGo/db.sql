@@ -54,3 +54,13 @@ CREATE TABLE public.Payment (
   CONSTRAINT Payment_student_id_fkey FOREIGN KEY (student_id) REFERENCES public.Student(student_id),
   CONSTRAINT Payment_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES public.Profile(profile_id)
 );
+
+
+CREATE TABLE public.Profile (
+  created_at timestamp without time zone NOT NULL DEFAULT now(),
+  profile_id uuid NOT NULL UNIQUE,
+  full_name text NOT NULL,
+  phone text NOT NULL,
+  role text NOT NULL,
+  CONSTRAINT Profile_pkey PRIMARY KEY (profile_id)
+);
