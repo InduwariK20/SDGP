@@ -19,3 +19,14 @@ CREATE TABLE public.Bus (
   CONSTRAINT Bus_pkey PRIMARY KEY (bus_id),
   CONSTRAINT Bus_driver_id_fkey FOREIGN KEY (driver_id) REFERENCES public.Profile(profile_id)
 );
+
+CREATE TABLE public.Bus_Location (
+  recorded_at timestamp without time zone NOT NULL,
+  bus_location_id uuid NOT NULL UNIQUE,
+  bus_id uuid NOT NULL UNIQUE,
+  latitude numeric NOT NULL,
+  longitude numeric NOT NULL,
+  speed numeric NOT NULL,
+  CONSTRAINT Bus_Location_pkey PRIMARY KEY (bus_location_id),
+  CONSTRAINT Bus_Location_bus_id_fkey FOREIGN KEY (bus_id) REFERENCES public.Bus(bus_id)
+);
