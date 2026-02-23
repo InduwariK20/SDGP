@@ -8,3 +8,14 @@ CREATE TABLE public.Attendance (
   CONSTRAINT Attendance_student_id_fkey FOREIGN KEY (student_id) REFERENCES public.Student(student_id),
   CONSTRAINT Attendance_bus_id_fkey FOREIGN KEY (bus_id) REFERENCES public.Bus(bus_id)
 );
+
+CREATE TABLE public.Bus (
+  bus_id uuid NOT NULL UNIQUE,
+  bus_number text NOT NULL UNIQUE,
+  driver_id uuid NOT NULL UNIQUE,
+  route_name text NOT NULL,
+  capacity bigint NOT NULL,
+  created_at timestamp without time zone NOT NULL DEFAULT now(),
+  CONSTRAINT Bus_pkey PRIMARY KEY (bus_id),
+  CONSTRAINT Bus_driver_id_fkey FOREIGN KEY (driver_id) REFERENCES public.Profile(profile_id)
+);
