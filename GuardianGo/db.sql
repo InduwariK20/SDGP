@@ -30,3 +30,14 @@ CREATE TABLE public.Bus_Location (
   CONSTRAINT Bus_Location_pkey PRIMARY KEY (bus_location_id),
   CONSTRAINT Bus_Location_bus_id_fkey FOREIGN KEY (bus_id) REFERENCES public.Bus(bus_id)
 );
+
+CREATE TABLE public.Message (
+  message_id uuid NOT NULL UNIQUE,
+  sender_id uuid NOT NULL UNIQUE,
+  received_id uuid NOT NULL UNIQUE,
+  message text NOT NULL,
+  send_at timestamp without time zone NOT NULL DEFAULT now(),
+  CONSTRAINT Message_pkey PRIMARY KEY (message_id),
+  CONSTRAINT Message_sender_id_fkey FOREIGN KEY (sender_id) REFERENCES public.Profile(profile_id),
+  CONSTRAINT Message_received_id_fkey FOREIGN KEY (received_id) REFERENCES public.Profile(profile_id)
+);
