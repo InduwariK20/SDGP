@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './driver_home.dart';
+import 'package:flutter_sdgp_app/screen/DriverHome.dart';
 
 class DriverLogin extends StatefulWidget {
   const DriverLogin({super.key});
@@ -9,7 +9,7 @@ class DriverLogin extends StatefulWidget {
 }
 
 class _DriverLoginState extends State<DriverLogin> {
-  bool _isObscure = true; // hide password
+  bool _isObscure = true; // Password එක සඟවා තැබීමට
 
   @override
   Widget build(BuildContext context) {
@@ -42,24 +42,33 @@ class _DriverLoginState extends State<DriverLogin> {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.1),
+                      color: Colors.black.withOpacity(0.1),
                       blurRadius: 10,
                       offset: const Offset(0, 5),
-                    )
+                    ),
                   ],
                 ),
                 child: Column(
                   children: [
                     const Text(
                       'Driver Role',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 20),
 
                     // Social Login Buttons
-                    _socialButton('assets/google_logo.png', 'Continue with Google'),
+                    _socialButton(
+                      'assets/google_logo.png',
+                      'Continue with Google',
+                    ),
                     const SizedBox(height: 15),
-                    _socialButton('assets/apple_logo.png', 'Continue with Apple'),
+                    _socialButton(
+                      'assets/apple_logo.png',
+                      'Continue with Apple',
+                    ),
 
                     const SizedBox(height: 15),
                     const Row(
@@ -67,7 +76,10 @@ class _DriverLoginState extends State<DriverLogin> {
                         Expanded(child: Divider()),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: Text('or', style: TextStyle(color: Colors.grey)),
+                          child: Text(
+                            'or',
+                            style: TextStyle(color: Colors.grey),
+                          ),
                         ),
                         Expanded(child: Divider()),
                       ],
@@ -98,8 +110,13 @@ class _DriverLoginState extends State<DriverLogin> {
                         filled: true,
                         fillColor: Colors.grey[200],
                         suffixIcon: IconButton(
-                          icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),
-                          onPressed: () => setState(() => _isObscure = !_isObscure),
+                          icon: Icon(
+                            _isObscure
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: () =>
+                              setState(() => _isObscure = !_isObscure),
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -115,22 +132,28 @@ class _DriverLoginState extends State<DriverLogin> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Driver go to Dashboard
+                          // Driver Dashboard එකට රැගෙන යාම
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => const DriverhomeScreen()),
+                            MaterialPageRoute(
+                              builder: (context) => const DriverhomeScreen(),
+                            ),
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFFACC15), // Yellow color
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          backgroundColor: const Color(
+                            0xFFFACC15,
+                          ), // Yellow color
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
                         child: const Text(
                           'Log in',
                           style: TextStyle(
-                            color: Colors.black, 
-                            fontSize: 18, 
-                            fontWeight: FontWeight.bold
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -143,7 +166,13 @@ class _DriverLoginState extends State<DriverLogin> {
                         const Text("Don't have an account? "),
                         GestureDetector(
                           onTap: () {},
-                          child: const Text('Sign Up', style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold)),
+                          child: const Text(
+                            'Sign Up',
+                            style: TextStyle(
+                              color: Colors.orange,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ],
                     ),
