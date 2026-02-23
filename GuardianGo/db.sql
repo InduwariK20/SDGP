@@ -41,3 +41,16 @@ CREATE TABLE public.Message (
   CONSTRAINT Message_sender_id_fkey FOREIGN KEY (sender_id) REFERENCES public.Profile(profile_id),
   CONSTRAINT Message_received_id_fkey FOREIGN KEY (received_id) REFERENCES public.Profile(profile_id)
 );
+
+CREATE TABLE public.Payment (
+  created_at timestamp without time zone NOT NULL DEFAULT now(),
+  payment_id uuid NOT NULL UNIQUE,
+  student_id uuid NOT NULL UNIQUE,
+  parent_id uuid NOT NULL UNIQUE,
+  amount numeric NOT NULL,
+  payment_status text NOT NULL,
+  payment_date timestamp without time zone NOT NULL,
+  CONSTRAINT Payment_pkey PRIMARY KEY (payment_id),
+  CONSTRAINT Payment_student_id_fkey FOREIGN KEY (student_id) REFERENCES public.Student(student_id),
+  CONSTRAINT Payment_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES public.Profile(profile_id)
+);
