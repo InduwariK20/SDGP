@@ -64,3 +64,18 @@ CREATE TABLE public.Profile (
   role text NOT NULL,
   CONSTRAINT Profile_pkey PRIMARY KEY (profile_id)
 );
+
+CREATE TABLE public.Student (
+  created_at timestamp without time zone NOT NULL DEFAULT now(),
+  bus_id uuid NOT NULL UNIQUE,
+  student_id uuid NOT NULL UNIQUE,
+  full_name text NOT NULL,
+  grade text NOT NULL,
+  parent_id uuid NOT NULL UNIQUE,
+  seat_number bigint NOT NULL,
+  medical_notes text NOT NULL,
+  CONSTRAINT Student_pkey PRIMARY KEY (student_id),
+  CONSTRAINT Student_bus_id_fkey FOREIGN KEY (bus_id) REFERENCES public.Bus(bus_id),
+  CONSTRAINT Student_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES public.Profile(profile_id)
+);
+
